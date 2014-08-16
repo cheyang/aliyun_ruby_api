@@ -1,5 +1,19 @@
 module Aliyun
-  class Base
-    API_ENDPOINT='https://ecs.aliyuncs.com/'
-  end
+ 
+    ALIYUN_API_ENDPOINT='https://ecs.aliyuncs.com/'
+    
+    $ENDPOINT_URL = nil
+    
+    
+    $ACCESS_KEY_ID = nil
+    
+    
+    $ACCESS_KEY_SECRET = nil
+    
+    
+    DEFAULT_PARAMETERS = {:Format=>"json",
+        :Version=>"2013-01-10", 
+        :SignatureMethod=>"HMAC-SHA1", 
+        :SignatureVersion=>"1.0"}
+  
 end
