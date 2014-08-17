@@ -38,7 +38,7 @@ module Aliyun
     
     def call_aliyun_with_parameter(method_name, params)
       
-      params = gen_request_parameters params
+      params = gen_request_parameters method_name, params
       
       
       uri = URI(endpoint_url)
@@ -67,7 +67,7 @@ module Aliyun
     end
     
     #generate the parameters
-    def gen_request_parameters params
+    def gen_request_parameters method_name, params
       #add common parameters
       params.merge! DEFAULT_PARAMETERS
       
