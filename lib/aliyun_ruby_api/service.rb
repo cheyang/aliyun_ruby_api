@@ -50,6 +50,8 @@ module Aliyun
       
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE 
       
+      puts "request url: #{uri.request_uri}"
+      
       request = Net::HTTP::Get.new(uri.request_uri)
       
       response = http.request(request)
