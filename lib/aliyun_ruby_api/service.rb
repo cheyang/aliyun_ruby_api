@@ -1,4 +1,9 @@
 require 'net/http'
+require 'time'
+require 'securerandom'
+require 'uri'
+require 'base64'
+require 'hmac-sha1'
 
 module Aliyun
   
@@ -12,6 +17,8 @@ module Aliyun
     attr_accessor :common_parameters
     
     attr_accessor :access_key_id
+    
+    attr_accessor :access_key_secret
     
     attr_accessor :endpoint_url
     
@@ -29,9 +36,10 @@ module Aliyun
       call_aliyun_with_parameter(method_name, args)
     end
     
-    def call_aliyun_with_parameter(method_url, params)
-      #add common parameters
-      params.merge! DEFAULT_PARAMETERS
+    def call_aliyun_with_parameter(method_name, params)
+      
+      params = gen_request_parameters params
+      
       
       uri = URI(endpoint_url)
       
@@ -53,6 +61,56 @@ module Aliyun
       else
         raise "response error code: #{response} and details #{response.body}"
       end
+      
+    end
+    
+    #generate the parameters
+    def gen_request_parameters params
+      #add common parameters
+      params.merge! DEFAULT_PARAMETERS
+      
+      params[:Action] = method_name.to_s
+      
+      params[:TimeStamp] = Time.now.utc.iso8601
+      
+      params[:SignatureNonce] = SecureRandom.uuid
+      
+      params[:Signature] = compute_signature params
+      
+      params
+    end
+    
+    #compute the signature of the parameters String
+    def compute_signature params
+      
+      sorted_keys = params.keys.sort
+      
+      canonicalized_query_string = ""
+      
+      sorted_keys.each {|key| canonicalized_query_string << SEPARATOR
+                              canonicalized_query_string << percent_encode(key)
+                              canonicalized_query_string << '='
+                              canonicalized_query_string << percent_encode(params[key])
+      }
+      
+      
+      string_to_sign = HTTP_METHOD + SEPARATOR + percent_encode('/') + SEPARATOR
+                   + percent_encode(canonicalized_query_string[1])
+      
+      signature = caculate_signature access_key_secret+"&", string_to_sign
+      
+    end
+    
+    def caculate_signature key, string_to_sign
+      hmac = HMAC::SHA1.new(key)
+      hmac.update(string_to_sign)
+      Base64.encode64(hmac.digest)
+    end
+    
+    #encode the value to aliyun's requirement
+    def percent_encode value
+      
+      value = URI.encode_www_form_component(value).gsub(/+/,'%20'),gsub(/*/,'%2A'),gsub('%7E','~')
       
     end
     

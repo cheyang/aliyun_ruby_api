@@ -2,6 +2,10 @@ module Aliyun
  
     ALIYUN_API_ENDPOINT='https://ecs.aliyuncs.com/'
     
+    SEPARATOR = "&"
+    
+    HTTP_METHOD = "GET"
+    
     $ENDPOINT_URL = nil
     
     
