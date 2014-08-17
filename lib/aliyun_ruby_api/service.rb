@@ -38,7 +38,7 @@ module Aliyun
     
     def call_aliyun_with_parameter(method_name, params)
       
-      params = gen_request_parameters params
+      params = gen_request_parameters params[0]
       
       
       uri = URI(endpoint_url)
