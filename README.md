@@ -1,6 +1,9 @@
 # AliyunRubyApi
 
-TODO: Write a gem description
+h1=. Aliyun ECS API Client for Ruby
+
+The Aliyun ECS API Client for Ruby is a library for connecting to and calling the routines of "The Aliyun ECS API":http://help.aliyun.com/view/11108189_13730407.html?spm=5176.7376125.1997918129.6.k2vNso from the "Ruby":http://www.ruby-lang.org programming language.
+
 
 ## Installation
 
