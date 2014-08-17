@@ -1,5 +1,3 @@
 require "aliyun_ruby_api/version"
-
-module AliyunRubyApi
-  # Your code goes here...
-end
+require "aliyun_ruby_api/base"
+require "aliyun_ruby_api/service"
