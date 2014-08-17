@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = AliyunRubyApi::VERSION
   spec.authors       = ["cheyang"]
   spec.email         = ["cheyang@163.com"]
-  spec.summary       = %q{TODO: Library for accessing Aliyun ECS}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Ruby API client for accessing Aliyun ECS}
+  spec.description   = %q{Ruby API client for using Aliyun ECS}
   spec.homepage      = ""
   spec.license       = "MIT"
 
