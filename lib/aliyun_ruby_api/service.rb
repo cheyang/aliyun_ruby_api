@@ -33,12 +33,12 @@ module Aliyun
     end
     
     def method_missing(method_name, *args)
-      call_aliyun_with_parameter(method_name, args)
+      call_aliyun_with_parameter(method_name, args[0])
     end
     
     def call_aliyun_with_parameter(method_name, params)
       
-      params = gen_request_parameters params[0]
+      params = gen_request_parameters params
       
       
       uri = URI(endpoint_url)
