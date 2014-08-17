@@ -30,7 +30,9 @@ require 'aliyun_ruby_api'
 Then, you need to set 
 
 ```
-options = {:access_key_id => "xxxxxx", :access_key_secret => "yyyyyy", :endpoint_url => "https://ecs.aliyuncs.com/"}
+options = {:access_key_id => "xxxxxx", 
+           :access_key_secret => "yyyyyy", 
+           :endpoint_url => "https://ecs.aliyuncs.com/"}
 
 service = Aliyun::Service.new options
 ```
