@@ -112,7 +112,7 @@ module Aliyun
     #encode the value to aliyun's requirement
     def percent_encode value
       
-      value = URI.encode_www_form_component(value).gsub(/+/,'%20'),gsub(/\*/,'%2A'),gsub('%7E','~')
+      value = URI.encode_www_form_component(value).gsub(/\+/,'%20'),gsub(/\*/,'%2A'),gsub(/%7E/,'~')
       
     end
     
