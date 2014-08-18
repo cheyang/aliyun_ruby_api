@@ -107,6 +107,8 @@ module Aliyun
       
       string_to_sign = HTTP_METHOD + SEPARATOR + percent_encode('/') + SEPARATOR + percent_encode(canonicalized_query_string[1])
       
+      puts "string_to_sign is  #{string_to_sign}"
+      
       signature = caculate_signature access_key_secret+"&", string_to_sign
       
     end
