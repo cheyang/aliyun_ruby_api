@@ -23,7 +23,7 @@ module Aliyun
     
     attr_accessor :endpoint_url
     
-    def initialize(options = {})
+    def initialize(options={})
       
       self.access_key_id = options[:access_key_id] || $ACCESS_KEY_ID || ""
       
@@ -34,16 +34,24 @@ module Aliyun
       self.options = {:AccessKeyId => self.access_key_id}
     end
     
+    #The method entry to call ECS url method
     def method_missing(method_name, *args)
-      puts "Not Found Method: #{method_name}"
+      if $DEBUG
+        puts "Not Found Method: #{method_name}"
+      end
+      
+      if args[0].nil?
+        raise AliyunAPIException.new "No such  method  #{method_name}!"
+      end
       
       call_aliyun_with_parameter(method_name, args[0])
     end
     
+    #Dispatch the request with parameter
+    private
     def call_aliyun_with_parameter(method_name, params)
       
       params = gen_request_parameters method_name, params
-      
       
       uri = URI(endpoint_url)
       
@@ -62,10 +70,10 @@ module Aliyun
       
       case response
         when Net::HTTPSuccess
-          
-          return JSON.parse(response.body)
+        
+        return JSON.parse(response.body)
       else
-        raise "response error code: #{response} and details #{response.body}"
+        raise AliyunAPIException.new "response error code: #{response.code} and details #{response.body}"
       end
       
     end
@@ -90,36 +98,44 @@ module Aliyun
     
     #compute the signature of the parameters String
     def compute_signature params
-      
-      puts "keys before sorted: #{params.keys}"
+      if $DEBUG 
+        puts "keys before sorted: #{params.keys}"
+      end
       
       sorted_keys = params.keys.sort
       
-      puts "keys after sorted: #{sorted_keys}"
+      if $DEBUG 
+        puts "keys after sorted: #{sorted_keys}"
+      end
       
       canonicalized_query_string = ""
       
       sorted_keys.each {|key| canonicalized_query_string << SEPARATOR
-                              canonicalized_query_string << percent_encode(key.to_s)
-                              canonicalized_query_string << '='
-                              canonicalized_query_string << percent_encode(params[key])
+        canonicalized_query_string << percent_encode(key.to_s)
+        canonicalized_query_string << '='
+        canonicalized_query_string << percent_encode(params[key])
       }
       
       length = canonicalized_query_string.length
       
       string_to_sign = HTTP_METHOD + SEPARATOR + percent_encode('/') + SEPARATOR + percent_encode(canonicalized_query_string[1,length])
       
-      puts "string_to_sign is  #{string_to_sign}"
+      if $DEBUG 
+        puts "string_to_sign is  #{string_to_sign}"
+      end
       
-      signature = caculate_signature access_key_secret+"&", string_to_sign
+      signature = calculate_signature access_key_secret+"&", string_to_sign
       
     end
     
-    def caculate_signature key, string_to_sign
+    #calculate the signature
+    def calculate_signature key, string_to_sign
       hmac = HMAC::SHA1.new(key)
       hmac.update(string_to_sign)
       signature = Base64.encode64(hmac.digest).gsub("\n", '')
-      puts "signature #{signature}"
+      if $DEBUG 
+        puts "signature #{signature}"
+      end
       signature
     end
     
