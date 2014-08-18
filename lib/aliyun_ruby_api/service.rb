@@ -4,6 +4,7 @@ require 'securerandom'
 require 'uri'
 require 'base64'
 require 'hmac-sha1'
+require 'json'
 
 module Aliyun
   
