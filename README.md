@@ -54,6 +54,7 @@ service.DescribeRegions parameters
 ```
 
 (2) For example, if you want to use alyun ECS API to describe images template of a specified region
+
 ```
 parameters = {:RegionId => "id", :PageNumber => "2", :RageSize => "20"}
 
@@ -63,6 +64,7 @@ service.DescribeImages parameters
 Notice:
 
 If you want to output the debug info, please add this line before you call the API
+
 ```
 $DEBUG = true
 
