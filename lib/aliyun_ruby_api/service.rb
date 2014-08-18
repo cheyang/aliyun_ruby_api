@@ -14,7 +14,7 @@ module Aliyun
     
     
     
-    attr_accessor :common_parameters
+    attr_accessor :options
     
     attr_accessor :access_key_id
     
@@ -30,6 +30,7 @@ module Aliyun
       
       self.endpoint_url = options[:endpoint_url] || $ENDPOINT_URL || ALIYUN_API_ENDPOINT
       
+      self.options = {:AccessKeyId => self.access_key_id}
     end
     
     def method_missing(method_name, *args)
@@ -42,6 +43,7 @@ module Aliyun
       
       params = gen_request_parameters method_name, params
       
+      params.merge! self.options
       
       uri = URI(endpoint_url)
       
@@ -98,8 +100,7 @@ module Aliyun
       }
       
       
-      string_to_sign = HTTP_METHOD + SEPARATOR + percent_encode('/') + SEPARATOR
-                   + percent_encode(canonicalized_query_string[1])
+      string_to_sign = HTTP_METHOD + SEPARATOR + percent_encode('/') + SEPARATOR + percent_encode(canonicalized_query_string[1])
       
       signature = caculate_signature access_key_secret+"&", string_to_sign
       
