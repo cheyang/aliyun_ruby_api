@@ -43,7 +43,6 @@ module Aliyun
       
       params = gen_request_parameters method_name, params
       
-      params.merge! self.options
       
       uri = URI(endpoint_url)
       
@@ -74,6 +73,8 @@ module Aliyun
     def gen_request_parameters method_name, params
       #add common parameters
       params.merge! DEFAULT_PARAMETERS
+      
+      params.merge! self.options
       
       params[:Action] = method_name.to_s
       
