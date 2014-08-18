@@ -33,6 +33,8 @@ module Aliyun
     end
     
     def method_missing(method_name, *args)
+      puts "Not Found Method: #{method_name}"
+      
       call_aliyun_with_parameter(method_name, args[0])
     end
     
@@ -90,7 +92,7 @@ module Aliyun
       canonicalized_query_string = ""
       
       sorted_keys.each {|key| canonicalized_query_string << SEPARATOR
-                              canonicalized_query_string << percent_encode(key)
+                              canonicalized_query_string << percent_encode(key.to_s)
                               canonicalized_query_string << '='
                               canonicalized_query_string << percent_encode(params[key])
       }
@@ -112,7 +114,7 @@ module Aliyun
     #encode the value to aliyun's requirement
     def percent_encode value
       
-      value = URI.encode_www_form_component(value).gsub(/\+/,'%20'),gsub(/\*/,'%2A'),gsub(/%7E/,'~')
+      value = URI.encode_www_form_component(value).gsub(/\+/,'%20').gsub(/\*/,'%2A').gsub(/%7E/,'~')
       
     end
     
