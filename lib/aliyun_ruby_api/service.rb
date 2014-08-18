@@ -117,7 +117,9 @@ module Aliyun
     def caculate_signature key, string_to_sign
       hmac = HMAC::SHA1.new(key)
       hmac.update(string_to_sign)
-      Base64.encode64(hmac.digest)
+      signature = Base64.encode64(hmac.digest).gsub("\n", '')
+      puts "signature #{signature}"
+      signature
     end
     
     #encode the value to aliyun's requirement

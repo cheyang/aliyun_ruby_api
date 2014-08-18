@@ -15,7 +15,7 @@ module Aliyun
     $ACCESS_KEY_SECRET = nil
     
     
-    DEFAULT_PARAMETERS = {:Format=>"json",
+    DEFAULT_PARAMETERS = {:Format=>"JSON",
         :Version=>"2013-01-10", 
         :SignatureMethod=>"HMAC-SHA1", 
         :SignatureVersion=>"1.0"}
