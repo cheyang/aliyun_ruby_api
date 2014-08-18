@@ -90,7 +90,11 @@ module Aliyun
     #compute the signature of the parameters String
     def compute_signature params
       
+      puts "keys before sorted: #{params.keys}"
+      
       sorted_keys = params.keys.sort
+      
+      puts "keys after sorted: #{sorted_keys}"
       
       canonicalized_query_string = ""
       

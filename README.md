@@ -50,7 +50,7 @@ service.[Action] parameters
 ```
 parameters = {}
 
-service.DescribeZones parameters
+service.DescribeRegions parameters
 ```
 
 (1) For example, if you want to use alyun ECS API to describe images template of a specified region
