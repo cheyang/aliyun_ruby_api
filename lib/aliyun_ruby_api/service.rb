@@ -61,8 +61,9 @@ module Aliyun
       http.use_ssl = true if (uri.scheme == "https")
       
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE 
-      
-      puts "request url: #{uri.request_uri}"
+      if $DEBUG
+        puts "request url: #{uri.request_uri}"
+      end
       
       request = Net::HTTP::Get.new(uri.request_uri)
       
