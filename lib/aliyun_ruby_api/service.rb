@@ -104,8 +104,9 @@ module Aliyun
                               canonicalized_query_string << percent_encode(params[key])
       }
       
+      length = canonicalized_query_string.length
       
-      string_to_sign = HTTP_METHOD + SEPARATOR + percent_encode('/') + SEPARATOR + percent_encode(canonicalized_query_string[1])
+      string_to_sign = HTTP_METHOD + SEPARATOR + percent_encode('/') + SEPARATOR + percent_encode(canonicalized_query_string[1,length])
       
       puts "string_to_sign is  #{string_to_sign}"
       
