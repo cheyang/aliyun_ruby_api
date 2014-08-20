@@ -20,14 +20,14 @@ The Aliyun ECS API Client for Ruby 是调用 [阿里云 ECS服务](http://help.a
 
 ## 使用方法：
 
-首先，需要在代码中引入以来的类库:
+首先，需要在代码中引入类库:
 
 ```
 require 'rubygems'
 require 'aliyun_ruby_api'
 ```
 
-然后利用阿里云的access_key_id和access_key_secret初始化service对象
+然后利用自己阿里云账号下的access_key初始化service对象。如果没有access_key，可以通过[阿里云用户中心](https://i.aliyun.com/access_key/)申请access_key。
 
 ```
 options = {:access_key_id => "xxxxxx", 
