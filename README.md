@@ -64,7 +64,6 @@ service.DescribeImages parameters
 注意:
 
 如果想要输出更详细的debug信息，请将下面这行加入到阿里云API调用
-If you want to output the debug info, please add this line before you call the API
 
 ```
 $DEBUG = true
@@ -72,10 +71,6 @@ $DEBUG = true
 ```
 
 
-## Contributing
+## 参考例子
 
-1. Fork it ( http://github.com/<my-github-username>/aliyun_ruby_api/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+可以参考example/test.rb来实现。
