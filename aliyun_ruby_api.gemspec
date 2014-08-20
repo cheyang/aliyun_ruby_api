@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["cheyang@163.com"]
   spec.summary       = %q{Ruby API client for accessing Aliyun ECS}
   spec.description   = %q{Ruby API client for using Aliyun ECS}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/cheyang/aliyun_ruby_api"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
