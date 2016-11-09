@@ -16,7 +16,7 @@ module Aliyun
     
     
     DEFAULT_PARAMETERS = {:Format=>"JSON",
-        :Version=>"2013-01-10", 
+        :Version=>"2014-05-26", 
         :SignatureMethod=>"HMAC-SHA1", 
         :SignatureVersion=>"1.0"}
   

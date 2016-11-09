@@ -1,16 +1,15 @@
 require 'rubygems'
 require 'aliyun_ruby_api'
 
-$DEBUG=true
+#$DEBUG=true
 
-options = {:access_key_id => "xxxxxx",
-           :access_key_secret => "yyyyy",
+options = {:access_key_id => "xxxxx",
+           :access_key_secret => "xxxxx",
            :endpoint_url => "https://ecs.aliyuncs.com/"}
 
 
 service = Aliyun::Service.new options
 
-
-parameters = {}
+parameters = {:RegionId => "cn-beijing"}
 
 puts service.DescribeRegions parameters
