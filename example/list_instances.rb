@@ -4,8 +4,8 @@ require 'json'
 
 #$DEBUG=true
 
-options = {:access_key_id => "LTAIJPfvBISmJ78y",
-           :access_key_secret => "7RZYPistUW1QHIPYdQqcVzZPqdNsKM",
+options = {:access_key_id => "xxxxx",
+           :access_key_secret => "xxxxx",
            :endpoint_url => "https://ecs.aliyuncs.com/"}
 
 
